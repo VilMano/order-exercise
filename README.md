@@ -4,7 +4,7 @@ This is a quick project(API) to manage orders and products from a store.
 This API contains 3 models with 3 options for each one:
 
  - Products:
-  - View all;
+    - View all;
   - View one;
   - Create;
   
