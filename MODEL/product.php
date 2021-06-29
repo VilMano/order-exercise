@@ -27,5 +27,15 @@
 
             return $pQuery->fetchAll()[0];
         }
+
+        function create($product){
+            $sql = 'INSERT INTO product (name, price) VALUES (:name, :price);';
+            $pQuery = $this->conn->prepare($sql);
+            $pQuery->bindParam(':name', $product->name);
+            $pQuery->bindParam('price', $product->price);
+            $pQuery->execute();
+
+            return $this->conn->lastInsertId();
+        }
     }
 ?>

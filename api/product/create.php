@@ -9,7 +9,9 @@
 
     $database = new Database();
     $conn = $database->getConnection();
-
     $products = new Product($conn);
-    //$products->create();
+
+    $param = file_get_contents('php://input');
+    $product = json_decode($param);
+    echo $products->create($product);
 ?>
