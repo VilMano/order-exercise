@@ -14,8 +14,8 @@
         }
 
         function read(){
-            $sql = 'SELECT `order`.id as ID, `order`.total_price as TOTAL, order_item.product_id as PRODUCT, order_item.quantity as QUANTITY
-             FROM '. $this->table_name .' LEFT JOIN order_item ON `order`.id = order_item.order_id';
+            $sql = 'SELECT '. $this->table_name .'.id as ID, '. $this->table_name .'.total_price as TOTAL, order_item.product_id as PRODUCT, order_item.quantity as QUANTITY
+             FROM '. $this->table_name .' LEFT JOIN order_item ON '. $this->table_name .'.id = order_item.order_id';
             $pQuery = $this->conn->prepare($sql);
             
             $pQuery->execute();
