@@ -2,8 +2,8 @@
     class Database{
         private $host = '127.0.0.1';
         private $db_name = 'orders';
-        private $username = 'vil';
-        private $password = 'Tool+0112358';
+        private $username = 'user';
+        private $password = 'password';
         public $conn;
 
         public function getConnection(){
