@@ -18,5 +18,5 @@ This API contains 3 models with 3 options for each one:
     - View one;
     - Create;
 
-The point of this API was to **list all orders**, **order products* and **add new payment methods**.
+The point of this API was to **list all orders**, **order products** and **add new payment methods**.
 In order to understand how to use the API please check the Wiki.
