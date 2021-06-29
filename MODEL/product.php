@@ -12,7 +12,7 @@
         }
 
         function read(){
-            $sql = 'SELECT * FROM product';         //get products from database
+            $sql = 'SELECT * FROM '. $this->table_name . ';';         //get products from database
             $pQuery = $this->conn->prepare($sql);
             
             $pQuery->execute();
@@ -20,7 +20,7 @@
         }
 
         function readById($id){
-            $sql = 'SELECT * FROM product WHERE id = :id;';
+            $sql = 'SELECT * FROM '. $this->table_name .' WHERE id = :id;';
             $pQuery = $this->conn->prepare($sql);
             $pQuery->bindParam(':id', $id);
             $pQuery->execute();
@@ -29,7 +29,7 @@
         }
 
         function create($product){
-            $sql = 'INSERT INTO product (name, price) VALUES (:name, :price);';
+            $sql = 'INSERT INTO '. $this->table_name .' (name, price) VALUES (:name, :price);';
             $pQuery = $this->conn->prepare($sql);
             $pQuery->bindParam(':name', $product->name);
             $pQuery->bindParam('price', $product->price);

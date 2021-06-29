@@ -4,7 +4,7 @@
 
     class Order{
         private $conn;
-        public $table_name = 'order';
+        public $table_name = '`order`';
         
         public $id;
         public $total_price;
@@ -15,7 +15,7 @@
 
         function read(){
             $sql = 'SELECT `order`.id as ID, `order`.total_price as TOTAL, order_item.product_id as PRODUCT, order_item.quantity as QUANTITY
-             FROM `order` LEFT JOIN order_item ON `order`.id = order_item.order_id';
+             FROM '. $this->table_name .' LEFT JOIN order_item ON `order`.id = order_item.order_id';
             $pQuery = $this->conn->prepare($sql);
             
             $pQuery->execute();
@@ -35,7 +35,7 @@
         }
 
         function readById($id){
-            $sql = 'SELECT * FROM `order` WHERE id = :id;';
+            $sql = 'SELECT * FROM '. $this->table_name .' WHERE id = :id;';
             $pQuery = $this->conn->prepare($sql);
             $pQuery->bindParam(':id', $id);
             $pQuery->execute();
@@ -52,7 +52,7 @@
                 $payment = new Payment($this->conn);
                 $payment_method = $payment->readById($order->payment_method);
 
-                $sql = 'INSERT INTO `order` (id, payment_id, created_date, total_price) VALUES (:order_id, :payment_method, NOW(), :total_price);';
+                $sql = 'INSERT INTO '. $this->table_name .' (id, payment_id, created_date, total_price) VALUES (:order_id, :payment_method, NOW(), :total_price);';
 
                 $total_price = 0;
                 foreach($order->products as $product){
@@ -100,7 +100,7 @@
         }
 
         function generateIdOrder(){
-            $results = $this->conn->prepare('SELECT id FROM `order` order by id desc LIMIT 1;');
+            $results = $this->conn->prepare('SELECT id FROM '. $this->table_name .' order by id desc LIMIT 1;');
             $results->execute();
             // fetch the ID of the last order
             if(!$results){

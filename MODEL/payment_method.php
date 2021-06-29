@@ -13,14 +13,14 @@
         }
 
         function read(){
-            $sql = 'SELECT * FROM payment_method';
+            $sql = 'SELECT * FROM '. $this->table_name .';';
             $pQuery = $this->conn->prepare($sql);
             $pQuery->execute();
             return $pQuery;
         }
 
         function readById($id){
-            $sql = 'SELECT * FROM payment_method WHERE id = :id;';
+            $sql = 'SELECT * FROM '. $this->table_name .' WHERE id = :id;';
             $pQuery = $this->conn->prepare($sql);
             $pQuery->bindParam(':id', $id);
 
@@ -30,7 +30,7 @@
 
         function create($name, $discount){
             try{
-                $sql = 'INSERT INTO payment_method (name, discount) VALUES (:name, :discount);';
+                $sql = 'INSERT INTO '. $this->table_name .' (name, discount) VALUES (:name, :discount);';
                 $pQuery = $this->conn->prepare($sql);
                 $pQuery->bindParam(':name', $name);
                 $pQuery->bindParam(':discount', $discount);
